@@ -1,64 +1,20 @@
-const title = document.getElementById("header-title");
-title.style.border = "2px solid black";
-title.style.padding = "4px";
+const ul = document.getElementById("items");
+ul.addEventListener("click", deleteItem);
 
-const addTitle = document.getElementsByClassName("title");
-console.log(addTitle);
-addTitle[0].style.fontWeight = "900";
-addTitle[0].style.color = "green";
-
-const items = document.getElementsByClassName("list-group-item");
-console.log(items);
-
-items[2].style.backgroundColor = "green";
-
-for (const item of items) {
-  item.style.fontWeight = "bold";
+function deleteItem(e) {
+  if (e.target.classList.contains("delete")) {
+    if (confirm("Are you Sure?")) {
+      var li = e.target.parentElement;
+      ul.removeChild(li);
+    }
+  }
 }
 
-const li = document.getElementsByTagName("li");
-console.log(li);
+const li = document.querySelectorAll("li");
+for (const data of li) {
+  const editBtn = document.createElement("button");
+  editBtn.innerText = "Edit";
+  editBtn.class = "edit p-3 m-2";
 
-li[4].classList.add("list-group-item");
-
-document.querySelector("li:nth-child(2)").style.backgroundColor = "green";
-document.querySelector("li:nth-child(3)").style.display = "none";
-console.log("Hello");
-
-console.log(document.querySelector("#items").parentElement);
-console.log(
-  (document.querySelector("#items").lastElementChild.style.backgroundColor =
-    "blue")
-);
-
-console.log(
-  (document.querySelector("#items").firstElementChild.style.backgroundColor =
-    "blue")
-);
-
-console.log(document.querySelector("#items").lastChild);
-console.log(document.querySelector("#items").firstChild);
-
-const ul = document.getElementById("items");
-console.log(ul.nextSibling);
-console.log(ul.previousSibling);
-
-console.log(ul.nextElementSibling);
-console.log(ul.previousElementSibling);
-
-const newElement = document.createElement("span");
-newElement.setAttribute("title", "new");
-console.log(newElement);
-
-const newText = document.createTextNode("New");
-newElement.appendChild(newText);
-console.log(newElement);
-
-const container = document.querySelector("header .container");
-const h1 = document.querySelector("header h1");
-const data1 = document.createElement("div");
-data1.innerHTML = "Hello World";
-console.log(data1);
-container.insertBefore(data1, h1);
-
-ul.insertBefore(data1, li[0]);
+  data.appendChild(editBtn);
+}
