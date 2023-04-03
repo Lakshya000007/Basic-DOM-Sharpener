@@ -15,3 +15,8 @@ items[2].style.backgroundColor = "green";
 for (const item of items) {
   item.style.fontWeight = "bold";
 }
+
+const li = document.getElementsByTagName("li");
+console.log(li);
+
+li[4].classList.add("list-group-item");
