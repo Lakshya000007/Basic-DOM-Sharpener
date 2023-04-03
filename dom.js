@@ -23,3 +23,4 @@ li[4].classList.add("list-group-item");
 
 document.querySelector("li:nth-child(2)").style.backgroundColor = "green";
 document.querySelector("li:nth-child(3)").style.display = "none";
+console.log("Hello");
