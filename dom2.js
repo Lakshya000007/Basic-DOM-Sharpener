@@ -23,7 +23,16 @@ function submitForm(e) {
     element.innerHTML = `<b>Email</b> :- ${email.value} <b>Password </b> :- ${password.value}`;
     ul.appendChild(element);
 
-    localStorage.setItem(email.value, password.value);
+    //localStorage.setItem(email.value, password.value);
+    const obj = { email: `${email.value}`, password: `${password.value}` };
+
+    console.log(obj);
+
+    localStorage.setItem(`${email.value}Details`, JSON.stringify(obj));
+
+    const details = JSON.parse(localStorage.getItem(`${email.value}Details`));
+    console.log(details.email);
+    console.log(details.password);
   }
 
   setTimeout((e) => {
