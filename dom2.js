@@ -33,8 +33,6 @@ function submitForm(e) {
     const details = JSON.parse(localStorage.getItem(`${email.value}Details`));
     console.log(details.email);
     console.log(details.password);
-
-    console.log.log("Done");
   }
 
   setTimeout((e) => {
