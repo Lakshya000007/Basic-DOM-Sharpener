@@ -12,6 +12,8 @@ console.log(password);
 
 submit.addEventListener("click", submitForm);
 
+const deleteId = "";
+
 function submitForm(e) {
   e.preventDefault();
   console.log(email.value);
@@ -20,8 +22,16 @@ function submitForm(e) {
   if (email.value.trim() && password.value.trim() != "") {
     const element = document.createElement("li");
     element.classList = "list-group-item text-center";
-    element.innerHTML = `<b>Email</b> :- ${email.value} <b>Password </b> :- ${password.value}`;
+    element.innerHTML = `<b>${email.value}</b>`;
     ul.appendChild(element);
+
+    const btn = document.createElement("button");
+    btn.classList = "btn btn-danger float-right";
+    btn.innerText = "DELETE";
+    btn.id = "delete";
+    element.appendChild(btn);
+
+    console.log(btn);
 
     //localStorage.setItem(email.value, password.value);
     const obj = { email: `${email.value}`, password: `${password.value}` };
@@ -35,6 +45,21 @@ function submitForm(e) {
     console.log(details.password);
 
     console.log("Done");
+  }
+
+  ul.addEventListener("click", deleteItem);
+
+  function deleteItem(e) {
+    if (e.target.id == "delete") {
+      const parent = e.target.parentElement;
+      console.log(parent);
+
+      const deleteId = `${parent.firstElementChild.innerText}Details`;
+
+      ul.removeChild(parent);
+
+      localStorage.removeItem(deleteId);
+    }
   }
 
   setTimeout((e) => {
