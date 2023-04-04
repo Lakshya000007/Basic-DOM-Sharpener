@@ -12,8 +12,6 @@ console.log(password);
 
 submit.addEventListener("click", submitForm);
 
-const deleteId = "";
-
 function submitForm(e) {
   e.preventDefault();
   console.log(email.value);
@@ -30,6 +28,12 @@ function submitForm(e) {
     btn.innerText = "DELETE";
     btn.id = "delete";
     element.appendChild(btn);
+
+    const editBtn = document.createElement("button");
+    editBtn.classList = "btn btn-primary mr-5";
+    editBtn.innerText = "EDIT";
+    editBtn.id = "edit";
+    element.appendChild(editBtn);
 
     console.log(btn);
 
@@ -62,8 +66,27 @@ function submitForm(e) {
     }
   }
 
+  ul.addEventListener("click", editItem);
+  function editItem(e) {
+    if (e.target.id == "edit") {
+      const parent = e.target.parentElement;
+      console.log(parent);
+
+      const deleteId = `${parent.firstElementChild.innerText}Details`;
+
+      ul.removeChild(parent);
+
+      localStorage.removeItem(deleteId);
+
+      setTimeout((e) => {
+        email.value = `${parent.firstElementChild.innerText}`;
+        password.value = "";
+      }, 500);
+    }
+  }
+
   setTimeout((e) => {
     email.value = "";
     password.value = "";
-  }, 3000);
+  }, 200);
 }
